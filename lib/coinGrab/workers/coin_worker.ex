@@ -15,7 +15,7 @@ defmodule CoinGrab.Workers.CoinWorker do
 
   def init(state) do
     schedule_coin_refresh()
-    {:ok, state}
+    {:ok, state, {:continue, :load_coins}}
   end
 
   def handle_cast({:add_coin, coin}, state) do
@@ -35,6 +35,11 @@ defmodule CoinGrab.Workers.CoinWorker do
     updated_coin_prices = update_coin_prices(state)
     schedule_coin_refresh()
     {:noreply, updated_coin_prices}
+  end
+
+  def handle_continue(:load_coins, _state) do
+    coins = CoinGrab.Coins.list_coins()
+    {:noreply, coins}
   end
 
   defp update_coin_prices(state) do
