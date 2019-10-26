@@ -2,7 +2,7 @@ defmodule CoinGrabWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", CoinGrabWeb.RoomChannel
+  channel "coin_tracker", CoinGrabWeb.CoinTrackerChannel
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After

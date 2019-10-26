@@ -1,7 +1,10 @@
 <h2>Track Cyptocurrencies</h2>
 
 <%= for coin <- @coins do %>
-  <p><%= String.capitalize(coin.name) %>: $<%= Float.round(coin.price, 4) %></p>
+  <p>
+    <%= String.capitalize(coin.name) %>:
+    <span id="<%= coin.name %>">$<%= Float.round(coin.price, 4) %></span>
+  </p>
 <% end %>
 
 
